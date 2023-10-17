@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "320353194657",
+    "project_id": "facebook-auth-bcdba",
+    "storage_bucket": "facebook-auth-bcdba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:320353194657:android:ac59d6814b083e08ef96e0",
+        "android_client_info": {
+          "package_name": "com.auth"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1HtQadnuWljzJsa5iT5tvAZqKtOryDnA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
