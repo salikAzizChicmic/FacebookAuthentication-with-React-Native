@@ -1,79 +1,78 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+Facebook developers setup
 
-# Getting Started
+1 -: Goto developers.facebook.com
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+2 -: Create app > Allow people to login with their  Facebook account > Next
 
-## Step 1: Start the Metro Server
+3 -: Enter app name and email and then create app > select password > submit
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+4 -: Then we need three things  App id , App secret , client token
 
-To start Metro, run the following command from the _root_ of your React Native project:
+      For app id and app secret --> App settings > Basic 
+      For client token --> App Settings > Advanced > Security > Client token (keep them for further use)
 
-```bash
-# using npm
-npm start
+5 -: Now go to -: use cases > Authentication and account creation > Add all permission
 
-# OR using Yarn
-yarn start
-```
+6 -: Now from App setting > Basic  > click on Add platform  > Android > Next >Google play >Next
 
-## Step 2: Start your Application
+     --> Here you need three things -: Key hashes , package name , Class name
+     Step to get them
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+     a) Key hash
+        1-: cd android 
+        2-: keytool -exportcert -alias alias_name -keystore sample_keystore.keystore | openssl sha1 -binary | openssl base64
+     b) package
+        --> copy it from manifest file or Any .java file
 
-### For Android
+Project setup
 
-```bash
-# using npm
-npm run android
+1-: Install these 
 
-# OR using Yarn
-yarn android
-```
+    "@react-native-firebase/app": "^18.5.0",
+    "@react-native-firebase/auth": "^18.5.0",
+    "react-native-fbsdk-next": "^12.1.0",
 
-### For iOS
+2-: Add these lines in strings.xml
+    
+ 
+    <string name="facebook_app_id">Your app id</string>
+    <string name="facebook_client_token">Your client token</string>
 
-```bash
-# using npm
-npm run ios
+3-: Add this in manifest file inside application tag
 
-# OR using Yarn
-yarn ios
-```
+     <meta-data android:name="com.facebook.sdk.ApplicationId"
+          android:value="@string/facebook_app_id"/>
+     <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+4 -: android/app/build.gradle
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+     dependencies {
+    // Add these lines
+    implementation platform('com.google.firebase:firebase-bom:26.3.0')
+    implementation 'com.google.firebase:firebase-auth'
+     }
 
-## Step 3: Modifying your App
+5 -: android/build.gradle
 
-Now that you have successfully run the app, let's modify it.
+    buildscript {
+    repositories {
+        google()
+        jcenter()
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+        // Add this line
+        mavenCentral()
+    }
+   }
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+6 -: android/app/build.gradle
 
-## Congratulations! :tada:
+    implementation 'com.facebook.android:facebook-android-sdk:[5,6)'
 
-You've successfully run and modified your React Native App. :partying_face:
 
-### Now what?
+Firebase setup
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+1-: From your project select authentication > add new provider > facebook 
+    --> Enter your App id and secret
 
-# Troubleshooting
+2-: download the google-services.json file and place it in the android/app directory
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
