@@ -76,3 +76,4 @@ Firebase setup
 
 2-: download the google-services.json file and place it in the android/app directory
 
+3-: I have also added sha1 and sha256 in firebase app as precautionary Step. 
